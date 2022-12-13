@@ -11,6 +11,7 @@ export class UserService {
 
   create(dto: CreateUserDto): Promise<UserEntity> {
     try {
+      delete dto.confirmPassword;
       const data: UserEntity = { ...dto, id: randomUUID() };
       return this.repository.create(data);
     } catch (err) {}
@@ -22,7 +23,7 @@ export class UserService {
     } catch (err) {}
   }
 
-  findOne(id): Promise<UserEntity> {
+  findOne(id: string): Promise<UserEntity> {
     try {
       return this.repository.findOne(id);
     } catch (err) {}
@@ -30,16 +31,17 @@ export class UserService {
 
   async update(id: string, dto: UpdateUserDto): Promise<UserEntity> {
     try {
+      delete dto.confirmPassword;
       await this.findOne(id);
       const data: Partial<UserEntity> = { ...dto };
-      return this.repository.update(id, data);
+      return await this.repository.update(id, data);
     } catch (err) {}
   }
 
   async delete(id: string): Promise<UserEntity> {
     try {
       await this.findOne(id);
-      return this.repository.delete(id);
+      return await this.repository.delete(id);
     } catch (err) {}
   }
 }

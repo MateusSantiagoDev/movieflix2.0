@@ -52,7 +52,7 @@ export class UserController {
     summary: 'Editar um usuário pelo ID',
   })
   @Patch(':id')
-  update(@Param('id') id: string, dto: UpdateUserDto): Promise<UserEntity> {
+  update(@Param('id') id: string, @Body() dto: UpdateUserDto): Promise<UserEntity> {
     try {
       return this.service.update(id, dto);
     } catch (err) {}
@@ -61,7 +61,7 @@ export class UserController {
   @ApiOperation({
     summary: 'Remover um usuário pelo ID',
   })
-  @Delete('id')
+  @Delete(':id')
   delete(@Param('id') id: string): Promise<UserEntity> {
     try {
       return this.service.delete(id);

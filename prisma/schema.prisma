@@ -16,7 +16,7 @@ model User {
   cpf      String @unique
   email    String @unique
   contato  Int    @unique
-  idade    String
+  idade    Int
   cidade   String
   role     String
   password String

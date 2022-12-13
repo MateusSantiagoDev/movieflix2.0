@@ -20,6 +20,7 @@ async function bootstrap() {
     .setVersion('2.0.0')
     .addTag('Status')
     .addTag('User')
+    .addTag('Plan')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

@@ -1,22 +1,28 @@
-import { Injectable } from "@nestjs/common";
-import { BasicEntity } from "./entities/basic.entity";
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { BasicEntity } from './entities/basic.entity';
 
 @Injectable()
 export class BasicRepository {
-    delete(id: string): BasicEntity | PromiseLike<BasicEntity> {
-      throw new Error('Method not implemented.');
-    }
-    update(id: string, data: Partial<BasicEntity>): BasicEntity | PromiseLike<BasicEntity> {
-      throw new Error('Method not implemented.');
-    }
-    findOne(id: string): Promise<BasicEntity> {
-      throw new Error('Method not implemented.');
-    }
-    findAll(): Promise<BasicEntity[]> {
-      throw new Error('Method not implemented.');
-    }
-    create(data: BasicEntity): Promise<import("./entities/basic.entity").BasicEntity> {
-      throw new Error('Method not implemented.');
-    }
-    constructor() {}
+  constructor(private readonly prisma: PrismaService) {}
+
+  create(data: BasicEntity): Promise<BasicEntity> {
+    return this.prisma.basic.create({ data });
+  }
+
+  findAll(): Promise<BasicEntity[]> {
+    return this.prisma.basic.findMany();
+  }
+
+  findOne(id: string): Promise<BasicEntity> {
+    return this.prisma.basic.findUniqueOrThrow({ where: { id } });
+  }
+
+  update(id: string, data: Partial<BasicEntity>): Promise<BasicEntity> {
+    return this.prisma.basic.update({ where: { id }, data });
+  }
+
+  delete(id: string): Promise<BasicEntity> {
+    return this.prisma.basic.delete({ where: { id } });
+  }
 }

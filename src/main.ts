@@ -22,6 +22,7 @@ async function bootstrap() {
     .addTag('User')
     .addTag('Plan')
     .addTag('Basic')
+    .addTag('Pattern')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

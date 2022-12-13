@@ -1,26 +1,46 @@
 import { Injectable } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { CreatePatternDto } from './dto/create-pattern.dto';
 import { UpdatePatternDto } from './dto/update-pattern.dto';
+import { PatternEntity } from './entities/pattern.entity';
+import { PatternRepository } from './pattern.repository';
+
 
 @Injectable()
 export class PatternService {
-  create(createPatternDto: CreatePatternDto) {
-    return 'This action adds a new pattern';
+  constructor(private readonly repository: PatternRepository) {}
+
+  create(dto: CreatePatternDto): Promise<PatternEntity> {
+    try {
+      const data: PatternEntity = { ...dto, id: randomUUID() };
+      return this.repository.create(data);
+    } catch (err) {}
   }
 
-  findAll() {
-    return `This action returns all pattern`;
+  findAll(): Promise<PatternEntity[]> {
+    try {
+      return this.repository.findAll();
+    } catch (err) {}
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pattern`;
+  findOne(id: string): Promise<PatternEntity> {
+    try {
+      return this.repository.findOne(id);
+    } catch (err) {}
   }
 
-  update(id: number, updatePatternDto: UpdatePatternDto) {
-    return `This action updates a #${id} pattern`;
+  async update(id: string, dto: UpdatePatternDto): Promise<PatternEntity> {
+    try {
+      await this.findOne(id);
+      const data: Partial<PatternEntity> = { ...dto };
+      return await this.repository.update(id, data);
+    } catch (err) {}
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pattern`;
+  async delete(id: string): Promise<PatternEntity> {
+    try {
+      await this.findOne(id);
+      return await this.repository.delete(id);
+    } catch (err) {}
   }
 }

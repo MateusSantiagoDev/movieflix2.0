@@ -7,22 +7,22 @@ export class PremiumRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   create(data: PremiumEntity): Promise<PremiumEntity> {
-    return this.prisma.pattern.create({ data });
+    return this.prisma.premium.create({ data });
   }
 
   findAll(): Promise<PremiumEntity[]> {
-    return this.prisma.pattern.findMany();
+    return this.prisma.premium.findMany();
   }
 
   findOne(id: string): Promise<PremiumEntity> {
-    return this.prisma.pattern.findUniqueOrThrow({ where: { id } });
+    return this.prisma.premium.findUniqueOrThrow({ where: { id } });
   }
 
   update(id: string, data: Partial<PremiumEntity>): Promise<PremiumEntity> {
-    return this.prisma.pattern.update({ where: { id }, data });
+    return this.prisma.premium.update({ where: { id }, data });
   }
 
   delete(id: string): Promise<PremiumEntity> {
-    return this.prisma.pattern.delete({ where: { id } });
+    return this.prisma.premium.delete({ where: { id } });
   }
 }

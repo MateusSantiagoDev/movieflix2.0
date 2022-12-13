@@ -7,22 +7,22 @@ export class PatternRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   create(data: PatternEntity): Promise<PatternEntity> {
-    return this.prisma.basic.create({ data });
+    return this.prisma.pattern.create({ data });
   }
 
   findAll(): Promise<PatternEntity[]> {
-    return this.prisma.basic.findMany();
+    return this.prisma.pattern.findMany();
   }
 
   findOne(id: string): Promise<PatternEntity> {
-    return this.prisma.basic.findUniqueOrThrow({ where: { id } });
+    return this.prisma.pattern.findUniqueOrThrow({ where: { id } });
   }
 
   update(id: string, data: Partial<PatternEntity>): Promise<PatternEntity> {
-    return this.prisma.basic.update({ where: { id }, data });
+    return this.prisma.pattern.update({ where: { id }, data });
   }
 
   delete(id: string): Promise<PatternEntity> {
-    return this.prisma.basic.delete({ where: { id } });
+    return this.prisma.pattern.delete({ where: { id } });
   }
 }

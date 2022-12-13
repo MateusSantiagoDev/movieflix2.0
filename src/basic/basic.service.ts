@@ -20,7 +20,7 @@ export class BasicService {
     return `This action updates a #${id} basic`;
   }
 
-  remove(id: number) {
+  delete(id: number) {
     return `This action removes a #${id} basic`;
   }
 }

@@ -32,7 +32,7 @@ export class UserController {
     summary: 'Vizualizar todos os usuários',
   })
   @Get()
-  findAll(): Promise<UserEntity> {
+  findAll(): Promise<UserEntity[]> {
     try {
       return this.service.findAll();
     } catch (err) {}

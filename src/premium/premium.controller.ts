@@ -13,8 +13,8 @@ import { UpdatePremiumDto } from './dto/update-premium.dto';
 import { PremiumEntity } from './entities/premium.entity';
 import { PremiumService } from './premium.service';
 
-@ApiTags('Pattern')
-@Controller('pattern')
+@ApiTags('Premium')
+@Controller('premium')
 export class PremiumController {
   constructor(private readonly service: PremiumService) {}
 

@@ -1,5 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 
 generator client {
   provider = "prisma-client-js"
@@ -79,4 +78,83 @@ model Premium {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("premium")
+}
+
+model MovieBasic {
+  id String @id @unique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("moviebasic")
+}
+
+model MoviePattern {
+  id String @id @unique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("moviepattern")
+}
+
+model MoviePremium {
+  id String @id @unique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("moviepremium")
+}
+
+model Movie {
+  id          String @id @unique
+  title       String
+  description String
+  evaluation  String
+  image       String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("movies")
+}
+
+model Serie {
+  id          String @id @unique
+  title       String
+  description String
+  evaluation  String
+  image       String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("serie")
+}
+
+model Desenho {
+  id          String @id @unique
+  title       String
+  description String
+  evaluation  String
+  image       String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("desenho")
+}
+
+model Documentario {
+  id          String @id @unique
+  title       String
+  description String
+  evaluation  String
+  image       String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("documentario")
 }

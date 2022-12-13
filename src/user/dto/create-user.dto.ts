@@ -29,7 +29,7 @@ export class CreateUserDto {
         description: 'Telefone para contrato',
         example: 999999999,
     })
-    contato: number;
+    contact: number;
 
     @IsNumber()
     @IsPositive()

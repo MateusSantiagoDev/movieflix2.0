@@ -3,7 +3,7 @@ export class UserEntity {
   name: string;
   cpf: string;
   email: string;
-  contato: number;
+  contact: number;
   idade: number;
   cidade: string;
   role: string;

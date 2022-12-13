@@ -1,26 +1,46 @@
 import { Injectable } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { CreatePremiumDto } from './dto/create-premium.dto';
 import { UpdatePremiumDto } from './dto/update-premium.dto';
+import { PremiumEntity } from './entities/premium.entity';
+import { PremiumRepository } from './premium.repository';
+
 
 @Injectable()
 export class PremiumService {
-  create(createPremiumDto: CreatePremiumDto) {
-    return 'This action adds a new premium';
+  constructor(private readonly repository: PremiumRepository) {}
+
+  create(dto: CreatePremiumDto): Promise<PremiumEntity> {
+    try {
+      const data: PremiumEntity = { ...dto, id: randomUUID() };
+      return this.repository.create(data);
+    } catch (err) {}
   }
 
-  findAll() {
-    return `This action returns all premium`;
+  findAll(): Promise<PremiumEntity[]> {
+    try {
+      return this.repository.findAll();
+    } catch (err) {}
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} premium`;
+  findOne(id: string): Promise<PremiumEntity> {
+    try {
+      return this.repository.findOne(id);
+    } catch (err) {}
   }
 
-  update(id: number, updatePremiumDto: UpdatePremiumDto) {
-    return `This action updates a #${id} premium`;
+  async update(id: string, dto: UpdatePremiumDto): Promise<PremiumEntity> {
+    try {
+      await this.findOne(id);
+      const data: Partial<PremiumEntity> = { ...dto };
+      return await this.repository.update(id, data);
+    } catch (err) {}
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} premium`;
+  async delete(id: string): Promise<PremiumEntity> {
+    try {
+      await this.findOne(id);
+      return await this.repository.delete(id);
+    } catch (err) {}
   }
 }

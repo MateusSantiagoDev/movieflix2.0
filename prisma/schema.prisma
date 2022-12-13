@@ -15,7 +15,7 @@ model User {
   name     String
   cpf      String @unique
   email    String @unique
-  contato  Int    @unique
+  contact  Int    @unique
   idade    Int
   cidade   String
   role     String
@@ -39,3 +39,44 @@ model Plan {
   @@map("plan")
 }
 
+model Basic {
+  id String @id @unique
+
+  email   String
+  contact Int
+  cpf     String
+  cidade  String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("basic")
+}
+
+model Pattern {
+  id String @id @unique
+
+  email   String
+  contact Int
+  cpf     String
+  cidade  String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("pattern")
+}
+
+model Premium {
+  id String @id @unique
+
+  email   String
+  contact Int
+  cpf     String
+  cidade  String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("premium")
+}

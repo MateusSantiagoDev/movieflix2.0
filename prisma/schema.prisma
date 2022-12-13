@@ -38,3 +38,4 @@ model Plan {
 
   @@map("plan")
 }
+

@@ -12,7 +12,7 @@ export class CreateSerieDto {
   @IsString()
   @ApiProperty({
     description: 'Descrição dop serie',
-    example: 'serie de aventura',
+    example: 'serie de suspense',
   })
   description: string;
 

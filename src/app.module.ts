@@ -8,9 +8,10 @@ import { BasicModule } from './basic/basic.module';
 import { PatternModule } from './pattern/pattern.module';
 import { PremiumModule } from './premium/premium.module';
 import { MovieModulo } from './movie/movie.module';
+import { SerieModule } from './serie/serie.module';
 
 @Module({
-  imports: [UserModule, PrismaModule, PlanModule, BasicModule, PatternModule, PremiumModule, MovieModulo],
+  imports: [UserModule, PrismaModule, PlanModule, BasicModule, PatternModule, PremiumModule, MovieModulo, SerieModule],
   controllers: [AppController],
   providers: [AppService],
 })

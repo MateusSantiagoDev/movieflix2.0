@@ -26,6 +26,7 @@ async function bootstrap() {
     .addTag('Premium')
     .addTag('Movie')
     .addTag('Serie')
+    .addTag('Drawing')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

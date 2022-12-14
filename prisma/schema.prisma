@@ -131,7 +131,7 @@ model Serie {
   @@map("serie")
 }
 
-model Desenho {
+model Drawing {
   id          String @id @unique
   title       String
   description String
@@ -141,10 +141,10 @@ model Desenho {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("desenho")
+  @@map("drawing")
 }
 
-model Documentario {
+model Documentary {
   id          String @id @unique
   title       String
   description String
@@ -154,5 +154,5 @@ model Documentario {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("documentario")
+  @@map("documentary")
 }

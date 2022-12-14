@@ -6,6 +6,7 @@ import { DocumentaryModule } from './documentary/documentary.module';
 import { DrawingModule } from './drawing/drawing.module';
 import { MovieModulo } from './movie/movie.module';
 import { MovieBasicModule } from './movieflix-basic/movieflix-basic.module';
+import { MoviePatternModule } from './movieflix-pattern/movieflix-pattern.module';
 import { PatternModule } from './pattern/pattern.module';
 import { PremiumModule } from './premium/premium.module';
 import { PrismaModule } from './prisma/prisma.module';
@@ -24,6 +25,7 @@ import { UserModule } from './user/user.module';
     DrawingModule,
     DocumentaryModule,
     MovieBasicModule,
+    MoviePatternModule,
   ],
   controllers: [AppController],
   providers: [AppService],

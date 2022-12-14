@@ -1,0 +1,11 @@
+import { DrawingEntity } from 'src/drawing/entities/drawing.entity';
+import { MovieEntity } from 'src/movie/entities/movie-entity';
+import { SerieEntity } from 'src/serie/entities/serie.entity';
+
+export class MoviePatternEntity {
+  id: string;
+  patternId: string;
+  movie?: MovieEntity[];
+  serie?: SerieEntity[];
+  drawing?: DrawingEntity[];
+}

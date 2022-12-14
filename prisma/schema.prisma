@@ -111,7 +111,7 @@ model Movie {
   id          String @id @unique
   title       String
   description String
-  evaluation  String
+  evaluation  Int
   image       String
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -124,7 +124,7 @@ model Serie {
   id          String @id @unique
   title       String
   description String
-  evaluation  String
+  evaluation  Int
   image       String
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -137,7 +137,7 @@ model Desenho {
   id          String @id @unique
   title       String
   description String
-  evaluation  String
+  evaluation  Int
   image       String
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -150,7 +150,7 @@ model Documentario {
   id          String @id @unique
   title       String
   description String
-  evaluation  String
+  evaluation  Int
   image       String
 
   createdAt DateTime @default(now()) @map("created_at")

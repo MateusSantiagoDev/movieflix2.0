@@ -21,19 +21,16 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  basic   Basic?  @relation(fields: [basicId], references: [id])
+  basicId String?
+
+  pattern   Pattern? @relation(fields: [patternId], references: [id])
+  patternId String?
+
+  premium   Premium? @relation(fields: [premiumId], references: [id])
+  premiumId String?
+
   @@map("user")
-}
-
-model Plan {
-  id      String @id @unique
-  basic   String
-  pattern String
-  premium String
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  @@map("plan")
 }
 
 model Basic {
@@ -46,6 +43,9 @@ model Basic {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  User       User[]
+  moviebasic MovieBasic[]
 
   @@map("basic")
 }
@@ -61,6 +61,9 @@ model Pattern {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  User         User[]
+  moviepattern MoviePattern[]
+
   @@map("pattern")
 }
 
@@ -75,6 +78,9 @@ model Premium {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  User         User[]
+  moviepremium MoviePremium[]
+
   @@map("premium")
 }
 
@@ -83,6 +89,12 @@ model MovieBasic {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  Basic   Basic?  @relation(fields: [basicId], references: [id])
+  basicId String?
+
+  movie Movie[]
+  serie Serie[]
 
   @@map("moviebasic")
 }
@@ -93,6 +105,13 @@ model MoviePattern {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  Pattern   Pattern? @relation(fields: [patternId], references: [id])
+  patternId String?
+
+  movie   Movie[]
+  serie   Serie[]
+  drawing Drawing[]
+
   @@map("moviepattern")
 }
 
@@ -101,6 +120,14 @@ model MoviePremium {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  Premium   Premium? @relation(fields: [premiumId], references: [id])
+  premiumId String?
+
+  movie       Movie[]
+  serie       Serie[]
+  drawing     Drawing[]
+  documentary Documentary[]
 
   @@map("moviepremium")
 }
@@ -115,6 +142,10 @@ model Movie {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  moviebasic   MovieBasic[]
+  moviepattern MoviePattern[]
+  moviepremium MoviePremium[]
+
   @@map("movies")
 }
 
@@ -127,6 +158,10 @@ model Serie {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  moviebasic   MovieBasic[]
+  moviepattern MoviePattern[]
+  moviepremium MoviePremium[]
 
   @@map("serie")
 }
@@ -141,6 +176,9 @@ model Drawing {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  moviepattern MoviePattern[]
+  moviepremium MoviePremium[]
+
   @@map("drawing")
 }
 
@@ -151,8 +189,10 @@ model Documentary {
   evaluation  Float
   image       String
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  moviepremium MoviePremium[]
 
   @@map("documentary")
 }

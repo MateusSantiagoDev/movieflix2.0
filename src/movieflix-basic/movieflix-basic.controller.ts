@@ -10,7 +10,7 @@ export class MovieBasicController {
   constructor(private readonly service: MovieBasicService) {}
 
   @ApiOperation({
-    summary: 'Visualizar todos os filmes',
+    summary: 'Visualizar todos os filmes e séries',
   })
   @Get()
   async findAll(): Promise<MovieBasicEntity[]> {
@@ -22,7 +22,7 @@ export class MovieBasicController {
   }
 
   @ApiOperation({
-    summary: 'Buscar um filme pelo ID',
+    summary: 'Buscar individualmente pelo ID',
   })
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<MovieBasicEntity> {

@@ -12,6 +12,7 @@ import { CreatePlanDto } from './dto/create-plan.dto';
 import { UpdatePlanDto } from './dto/update-plan.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PlanEntity } from './entities/plan.entity';
+import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 
 @ApiTags('Plan')
 @Controller('plan')
@@ -22,49 +23,62 @@ export class PlanController {
     summary: 'adcionar um novo plano',
   })
   @Post()
-  create(@Body() dto: CreatePlanDto): Promise<PlanEntity> {
+  async create(@Body() dto: CreatePlanDto): Promise<PlanEntity> {
     try {
-      return this.service.create(dto);
-    } catch (err) {}
+      return await this.service.create(dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Visualizar todos os planos',
   })
   @Get()
-  findAll(): Promise<PlanEntity[]> {
+  async findAll(): Promise<PlanEntity[]> {
     try {
-      return this.service.findAll();
-    } catch (err) {}
+      return await this.service.findAll();
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Buscar um plano pelo ID',
   })
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<PlanEntity> {
+  async findOne(@Param('id') id: string): Promise<PlanEntity> {
     try {
-      return this.service.findOne(id);
-    } catch (err) {}
+      return await this.service.findOne(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Editar um plano pelo ID',
   })
   @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: UpdatePlanDto): Promise<PlanEntity> {
+  async update(
+    @Param('id') id: string,
+    @Body() dto: UpdatePlanDto,
+  ): Promise<PlanEntity> {
     try {
-      return this.service.update(id, dto);
-    } catch (err) {}
+      return await this.service.update(id, dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Remover um plano pelo ID',
   })
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<PlanEntity> {
+  async delete(@Param('id') id: string): Promise<PlanEntity> {
     try {
-      return this.service.delete(id);
-    } catch (err) {}
+      return await this.service.delete(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 }

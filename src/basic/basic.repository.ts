@@ -6,23 +6,23 @@ import { BasicEntity } from './entities/basic.entity';
 export class BasicRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: BasicEntity): Promise<BasicEntity> {
-    return this.prisma.basic.create({ data });
+  async create(data: BasicEntity): Promise<BasicEntity> {
+    return await this.prisma.basic.create({ data });
   }
 
-  findAll(): Promise<BasicEntity[]> {
-    return this.prisma.basic.findMany();
+  async findAll(): Promise<BasicEntity[]> {
+    return await this.prisma.basic.findMany();
   }
 
-  findOne(id: string): Promise<BasicEntity> {
-    return this.prisma.basic.findUniqueOrThrow({ where: { id } });
+  async findOne(id: string): Promise<BasicEntity> {
+    return await this.prisma.basic.findUniqueOrThrow({ where: { id } });
   }
 
-  update(id: string, data: Partial<BasicEntity>): Promise<BasicEntity> {
-    return this.prisma.basic.update({ where: { id }, data });
+  async update(id: string, data: Partial<BasicEntity>): Promise<BasicEntity> {
+    return await this.prisma.basic.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<BasicEntity> {
-    return this.prisma.basic.delete({ where: { id } });
+  async delete(id: string): Promise<BasicEntity> {
+    return await this.prisma.basic.delete({ where: { id } });
   }
 }

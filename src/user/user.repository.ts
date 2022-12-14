@@ -6,23 +6,23 @@ import { UserEntity } from './entities/user.entity';
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: UserEntity): Promise<UserEntity> {
-    return this.prisma.user.create({ data });
+  async create(data: UserEntity): Promise<UserEntity> {
+    return await this.prisma.user.create({ data });
   }
 
-  findAll(): Promise<UserEntity[]> {
-    return this.prisma.user.findMany();
+  async findAll(): Promise<UserEntity[]> {
+    return await this.prisma.user.findMany();
   }
 
-  findOne(id: string): Promise<UserEntity> {
-    return this.prisma.user.findUniqueOrThrow({ where: { id } });
+  async findOne(id: string): Promise<UserEntity> {
+    return await this.prisma.user.findUniqueOrThrow({ where: { id } });
   }
 
-  update(id: string, data: Partial<UserEntity>): Promise<UserEntity> {
-    return this.prisma.user.update({ where: { id }, data });
+  async update(id: string, data: Partial<UserEntity>): Promise<UserEntity> {
+    return await this.prisma.user.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<UserEntity> {
-    return this.prisma.user.delete({ where: { id } });
+  async delete(id: string): Promise<UserEntity> {
+    return await this.prisma.user.delete({ where: { id } });
   }
 }

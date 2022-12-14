@@ -3,12 +3,11 @@ import {
   InternalServerErrorException,
   NotFoundException,
   UnauthorizedException,
-  UnprocessableEntityException,
+  UnprocessableEntityException
 } from '@nestjs/common';
-import { Exceptions } from './exception.class';
-import { Exception } from './exception.types';
+import { Exception, IException } from './exception.types';
 
-export function exceptionhandling({ message, exception }: Exceptions) {
+export function exceptionhandling({ message, exception }: IException) {
   if (
     exception === Exception.InvalidData ||
     exception === Exception.NotFoundData

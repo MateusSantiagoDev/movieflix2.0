@@ -6,23 +6,23 @@ import { PlanEntity } from './entities/plan.entity';
 export class PlanRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: PlanEntity): Promise<PlanEntity> {
-    return this.prisma.plan.create({ data });
+  async create(data: PlanEntity): Promise<PlanEntity> {
+    return await this.prisma.plan.create({ data });
   }
 
-  findAll(): Promise<PlanEntity[]> {
-    return this.prisma.plan.findMany();
+  async findAll(): Promise<PlanEntity[]> {
+    return await this.prisma.plan.findMany();
   }
 
-  findOne(id: string): Promise<PlanEntity> {
-    return this.prisma.plan.findFirstOrThrow({ where: { id } });
+  async findOne(id: string): Promise<PlanEntity> {
+    return await this.prisma.plan.findFirstOrThrow({ where: { id } });
   }
 
-  update(id: string, data: Partial<PlanEntity>): Promise<PlanEntity> {
-    return this.prisma.plan.update({ where: { id }, data });
+  async update(id: string, data: Partial<PlanEntity>): Promise<PlanEntity> {
+    return await this.prisma.plan.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<PlanEntity> {
-    return this.prisma.plan.delete({ where: { id } });
+  async delete(id: string): Promise<PlanEntity> {
+    return await this.prisma.plan.delete({ where: { id } });
   }
 }

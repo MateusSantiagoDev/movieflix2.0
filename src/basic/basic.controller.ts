@@ -8,6 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 import { BasicService } from './basic.service';
 import { CreateBasicDto } from './dto/create-basic.dto';
 import { UpdateBasicDto } from './dto/update-basic.dto';
@@ -22,52 +23,62 @@ export class BasicController {
     summary: 'adicionar um novo perfil',
   })
   @Post()
-  create(@Body() dto: CreateBasicDto): Promise<BasicEntity> {
+  async create(@Body() dto: CreateBasicDto): Promise<BasicEntity> {
     try {
-      return this.service.create(dto);
-    } catch (err) {}
+      return await this.service.create(dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Visualizar todos os perfils',
   })
   @Get()
-  findAll(): Promise<BasicEntity[]> {
+  async findAll(): Promise<BasicEntity[]> {
     try {
-      return this.service.findAll();
-    } catch (err) {}
+      return await this.service.findAll();
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Buscar um perfil pelo ID',
   })
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<BasicEntity> {
+  async findOne(@Param('id') id: string): Promise<BasicEntity> {
     try {
-      return this.service.findOne(id);
-    } catch (err) {}
+      return await this.service.findOne(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Editar um perfil pelo ID',
   })
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() dto: UpdateBasicDto,
   ): Promise<BasicEntity> {
     try {
-      return this.service.update(id, dto);
-    } catch (err) {}
+      return await this.service.update(id, dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Romover um perfil pelo ID',
   })
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<BasicEntity> {
+  async delete(@Param('id') id: string): Promise<BasicEntity> {
     try {
-      return this.service.delete(id);
-    } catch (err) {}
+      return await this.service.delete(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 }

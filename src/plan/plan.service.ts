@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
+import { Exceptions } from 'src/utils/exceptions/exception.class';
+import { Exception } from 'src/utils/exceptions/exception.types';
 import { CreatePlanDto } from './dto/create-plan.dto';
 import { UpdatePlanDto } from './dto/update-plan.dto';
 import { PlanEntity } from './entities/plan.entity';
@@ -8,23 +10,29 @@ import { PlanRepository } from './plan.repository';
 @Injectable()
 export class PlanService {
   constructor(private readonly repository: PlanRepository) {}
-  create(dto: CreatePlanDto): Promise<PlanEntity> {
+  async create(dto: CreatePlanDto): Promise<PlanEntity> {
     try {
       const data: PlanEntity = { ...dto, id: randomUUID() };
-      return this.repository.create(data);
-    } catch (err) {}
+      return await this.repository.create(data);
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 
-  findAll(): Promise<PlanEntity[]> {
+  async findAll(): Promise<PlanEntity[]> {
     try {
-      return this.repository.findAll();
-    } catch (err) {}
+      return await this.repository.findAll();
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 
-  findOne(id: string): Promise<PlanEntity> {
+  async findOne(id: string): Promise<PlanEntity> {
     try {
-      return this.repository.findOne(id);
-    } catch (err) {}
+      return await this.repository.findOne(id);
+    } catch (err) {
+      throw new Exceptions(Exception.NotFoundException);
+    }
   }
 
   async update(id: string, dto: UpdatePlanDto): Promise<PlanEntity> {
@@ -32,13 +40,17 @@ export class PlanService {
       await this.findOne(id);
       const data: Partial<PlanEntity> = { ...dto };
       return await this.repository.update(id, data);
-    } catch (err) {}
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 
   async delete(id: string): Promise<PlanEntity> {
     try {
       await this.findOne(id);
       return await this.repository.delete(id);
-    } catch (err) {}
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 }

@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
+import { Exceptions } from 'src/utils/exceptions/exception.class';
+import { Exception } from 'src/utils/exceptions/exception.types';
 import { DrawingRepository } from './drawing.repository';
 import { CreateDrawingDto } from './dto/create-drawing.dto';
 import { UpdateDrawingDto } from './dto/update-drawing.dto';
@@ -9,23 +11,29 @@ import { DrawingEntity } from './entities/drawing.entity';
 export class DrawingService {
   constructor(private readonly repository: DrawingRepository) {}
 
-  create(dto: CreateDrawingDto): Promise<DrawingEntity> {
+  async create(dto: CreateDrawingDto): Promise<DrawingEntity> {
     try {
       const data: DrawingEntity = { ...dto, id: randomUUID() };
-      return this.repository.create(data);
-    } catch (err) {}
+      return await this.repository.create(data);
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 
-  findAll(): Promise<DrawingEntity[]> {
+  async findAll(): Promise<DrawingEntity[]> {
     try {
-      return this.repository.findAll();
-    } catch (err) {}
+      return await this.repository.findAll();
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 
-  findOne(id: string): Promise<DrawingEntity> {
+  async findOne(id: string): Promise<DrawingEntity> {
     try {
-      return this.repository.findOne(id);
-    } catch (err) {}
+      return await this.repository.findOne(id);
+    } catch (err) {
+      throw new Exceptions(Exception.NotFoundException);
+    }
   }
 
   async update(id: string, dto: UpdateDrawingDto): Promise<DrawingEntity> {
@@ -33,13 +41,17 @@ export class DrawingService {
       await this.findOne(id);
       const data: Partial<DrawingEntity> = { ...dto };
       return await this.repository.update(id, data);
-    } catch (err) {}
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 
   async delete(id: string): Promise<DrawingEntity> {
     try {
       await this.findOne(id);
       return await this.repository.delete(id);
-    } catch (err) {}
+    } catch (err) {
+      throw new Exceptions(Exception.UnprocessableEntityException);
+    }
   }
 }

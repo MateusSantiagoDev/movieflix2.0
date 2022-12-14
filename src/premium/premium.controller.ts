@@ -8,6 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 import { CreatePremiumDto } from './dto/create-premium.dto';
 import { UpdatePremiumDto } from './dto/update-premium.dto';
 import { PremiumEntity } from './entities/premium.entity';
@@ -22,52 +23,62 @@ export class PremiumController {
     summary: 'adicionar um novo perfil',
   })
   @Post()
-  create(@Body() dto: CreatePremiumDto): Promise<PremiumEntity> {
+  async create(@Body() dto: CreatePremiumDto): Promise<PremiumEntity> {
     try {
-      return this.service.create(dto);
-    } catch (err) {}
+      return await this.service.create(dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Visualizar todos os perfils',
   })
   @Get()
-  findAll(): Promise<PremiumEntity[]> {
+  async findAll(): Promise<PremiumEntity[]> {
     try {
-      return this.service.findAll();
-    } catch (err) {}
+      return await this.service.findAll();
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Buscar um perfil pelo ID',
   })
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<PremiumEntity> {
+  async findOne(@Param('id') id: string): Promise<PremiumEntity> {
     try {
-      return this.service.findOne(id);
-    } catch (err) {}
+      return await this.service.findOne(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Editar um perfil pelo ID',
   })
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() dto: UpdatePremiumDto,
   ): Promise<PremiumEntity> {
     try {
-      return this.service.update(id, dto);
-    } catch (err) {}
+      return await this.service.update(id, dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Romover um perfil pelo ID',
   })
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<PremiumEntity> {
+  async delete(@Param('id') id: string): Promise<PremiumEntity> {
     try {
-      return this.service.delete(id);
-    } catch (err) {}
+      return await this.service.delete(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 }

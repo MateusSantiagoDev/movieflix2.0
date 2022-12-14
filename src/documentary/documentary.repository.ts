@@ -6,26 +6,26 @@ import { DocumentaryEntity } from './entities/documentary.entity';
 export class DocumentaryRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: DocumentaryEntity): Promise<DocumentaryEntity> {
-    return this.prisma.documentary.create({ data });
+  async create(data: DocumentaryEntity): Promise<DocumentaryEntity> {
+    return await this.prisma.documentary.create({ data });
   }
 
-  findAll(): Promise<DocumentaryEntity[]> {
-    return this.prisma.documentary.findMany();
+  async findAll(): Promise<DocumentaryEntity[]> {
+    return await this.prisma.documentary.findMany();
   }
 
-  findOne(id: string): Promise<DocumentaryEntity> {
-    return this.prisma.documentary.findUnique({ where: { id } });
+  async findOne(id: string): Promise<DocumentaryEntity> {
+    return await this.prisma.documentary.findUnique({ where: { id } });
   }
 
-  update(
+  async update(
     id: string,
     data: Partial<DocumentaryEntity>,
   ): Promise<DocumentaryEntity> {
-    return this.prisma.documentary.update({ where: { id }, data });
+    return await this.prisma.documentary.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<DocumentaryEntity> {
-    return this.prisma.documentary.delete({ where: { id } });
+  async delete(id: string): Promise<DocumentaryEntity> {
+    return await this.prisma.documentary.delete({ where: { id } });
   }
 }

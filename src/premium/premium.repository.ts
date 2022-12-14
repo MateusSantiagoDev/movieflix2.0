@@ -6,23 +6,26 @@ import { PremiumEntity } from './entities/premium.entity';
 export class PremiumRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: PremiumEntity): Promise<PremiumEntity> {
-    return this.prisma.premium.create({ data });
+  async create(data: PremiumEntity): Promise<PremiumEntity> {
+    return await this.prisma.premium.create({ data });
   }
 
-  findAll(): Promise<PremiumEntity[]> {
-    return this.prisma.premium.findMany();
+  async findAll(): Promise<PremiumEntity[]> {
+    return await this.prisma.premium.findMany();
   }
 
-  findOne(id: string): Promise<PremiumEntity> {
-    return this.prisma.premium.findUniqueOrThrow({ where: { id } });
+  async findOne(id: string): Promise<PremiumEntity> {
+    return await this.prisma.premium.findUniqueOrThrow({ where: { id } });
   }
 
-  update(id: string, data: Partial<PremiumEntity>): Promise<PremiumEntity> {
-    return this.prisma.premium.update({ where: { id }, data });
+  async update(
+    id: string,
+    data: Partial<PremiumEntity>,
+  ): Promise<PremiumEntity> {
+    return await this.prisma.premium.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<PremiumEntity> {
-    return this.prisma.premium.delete({ where: { id } });
+  async delete(id: string): Promise<PremiumEntity> {
+    return await this.prisma.premium.delete({ where: { id } });
   }
 }

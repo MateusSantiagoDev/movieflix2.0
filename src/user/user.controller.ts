@@ -8,6 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
@@ -22,49 +23,62 @@ export class UserController {
     summary: 'Adicionar um novo usuário',
   })
   @Post()
-  create(@Body() dto: CreateUserDto): Promise<UserEntity> {
+  async create(@Body() dto: CreateUserDto): Promise<UserEntity> {
     try {
-      return this.service.create(dto);
-    } catch (err) {}
+      return await this.service.create(dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Vizualizar todos os usuários',
   })
   @Get()
-  findAll(): Promise<UserEntity[]> {
+  async findAll(): Promise<UserEntity[]> {
     try {
-      return this.service.findAll();
-    } catch (err) {}
+      return await this.service.findAll();
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Buscar um usuário pelo ID',
   })
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<UserEntity> {
+  async findOne(@Param('id') id: string): Promise<UserEntity> {
     try {
-      return this.service.findOne(id);
-    } catch (err) {}
+      return await this.service.findOne(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Editar um usuário pelo ID',
   })
   @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: UpdateUserDto): Promise<UserEntity> {
+  async update(
+    @Param('id') id: string,
+    @Body() dto: UpdateUserDto,
+  ): Promise<UserEntity> {
     try {
-      return this.service.update(id, dto);
-    } catch (err) {}
+      return await this.service.update(id, dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Remover um usuário pelo ID',
   })
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<UserEntity> {
+  async delete(@Param('id') id: string): Promise<UserEntity> {
     try {
-      return this.service.delete(id);
-    } catch (err) {}
+      return await this.service.delete(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 }

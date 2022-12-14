@@ -6,23 +6,23 @@ import { MovieEntity } from './entities/movie-entity';
 export class MovieRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: MovieEntity): Promise<MovieEntity> {
-    return this.prisma.movie.create({ data });
+  async create(data: MovieEntity): Promise<MovieEntity> {
+    return await this.prisma.movie.create({ data });
   }
 
-  findAll(): Promise<MovieEntity[]> {
-    return this.prisma.movie.findMany();
+  async findAll(): Promise<MovieEntity[]> {
+    return await this.prisma.movie.findMany();
   }
 
-  findOne(id: string): Promise<MovieEntity> {
-    return this.prisma.movie.findUnique({ where: { id } });
+  async findOne(id: string): Promise<MovieEntity> {
+    return await this.prisma.movie.findFirstOrThrow({ where: { id } });
   }
 
-  update(id: string, data: Partial<MovieEntity>): Promise<MovieEntity> {
-    return this.prisma.movie.update({ where: { id }, data });
+  async update(id: string, data: Partial<MovieEntity>): Promise<MovieEntity> {
+    return await this.prisma.movie.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<MovieEntity> {
-    return this.prisma.movie.delete({ where: { id } });
+  async delete(id: string): Promise<MovieEntity> {
+    return await this.prisma.movie.delete({ where: { id } });
   }
 }

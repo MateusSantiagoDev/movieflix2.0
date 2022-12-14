@@ -8,6 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 import { DocumentaryService } from './documentary.service';
 import { CreateDocumentaryDto } from './dto/create-documentary.dto';
 import { UpdateDocumentaryDto } from './dto/update-documentary.dto';
@@ -22,52 +23,62 @@ export class DocumentaryController {
     summary: 'Adicionar um novo documentario',
   })
   @Post()
-  create(@Body() dto: CreateDocumentaryDto): Promise<DocumentaryEntity> {
+  async create(@Body() dto: CreateDocumentaryDto): Promise<DocumentaryEntity> {
     try {
-      return this.service.create(dto);
-    } catch (err) {}
+      return await this.service.create(dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Visualizar todos os documentarios',
   })
   @Get()
-  findAll(): Promise<DocumentaryEntity[]> {
+  async findAll(): Promise<DocumentaryEntity[]> {
     try {
-      return this.service.findAll();
-    } catch (err) {}
+      return await this.service.findAll();
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Buscar um documentario pelo ID',
   })
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<DocumentaryEntity> {
+  async findOne(@Param('id') id: string): Promise<DocumentaryEntity> {
     try {
-      return this.service.findOne(id);
-    } catch (err) {}
+      return await this.service.findOne(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Editar um documentario pelo ID',
   })
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() dto: UpdateDocumentaryDto,
   ): Promise<DocumentaryEntity> {
     try {
-      return this.service.update(id, dto);
-    } catch (err) {}
+      return await this.service.update(id, dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Remover um documentario pelo ID',
   })
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<DocumentaryEntity> {
+  async delete(@Param('id') id: string): Promise<DocumentaryEntity> {
     try {
-      return this.service.delete(id);
-    } catch (err) {}
+      return await this.service.delete(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 }

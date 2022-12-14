@@ -6,23 +6,26 @@ import { PatternEntity } from './entities/pattern.entity';
 export class PatternRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: PatternEntity): Promise<PatternEntity> {
-    return this.prisma.pattern.create({ data });
+  async create(data: PatternEntity): Promise<PatternEntity> {
+    return await this.prisma.pattern.create({ data });
   }
 
-  findAll(): Promise<PatternEntity[]> {
-    return this.prisma.pattern.findMany();
+  async findAll(): Promise<PatternEntity[]> {
+    return await this.prisma.pattern.findMany();
   }
 
-  findOne(id: string): Promise<PatternEntity> {
-    return this.prisma.pattern.findUniqueOrThrow({ where: { id } });
+  async findOne(id: string): Promise<PatternEntity> {
+    return await this.prisma.pattern.findUniqueOrThrow({ where: { id } });
   }
 
-  update(id: string, data: Partial<PatternEntity>): Promise<PatternEntity> {
-    return this.prisma.pattern.update({ where: { id }, data });
+  async update(
+    id: string,
+    data: Partial<PatternEntity>,
+  ): Promise<PatternEntity> {
+    return await this.prisma.pattern.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<PatternEntity> {
-    return this.prisma.pattern.delete({ where: { id } });
+  async delete(id: string): Promise<PatternEntity> {
+    return await this.prisma.pattern.delete({ where: { id } });
   }
 }

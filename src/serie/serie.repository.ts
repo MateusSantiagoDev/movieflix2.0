@@ -6,23 +6,23 @@ import { SerieEntity } from './entities/serie.entity';
 export class SerieRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(data: SerieEntity): Promise<SerieEntity> {
-    return this.prisma.serie.create({ data });
+  async create(data: SerieEntity): Promise<SerieEntity> {
+    return await this.prisma.serie.create({ data });
   }
 
-  findAll(): Promise<SerieEntity[]> {
-    return this.prisma.serie.findMany();
+  async findAll(): Promise<SerieEntity[]> {
+    return await this.prisma.serie.findMany();
   }
 
-  findOne(id: string): Promise<SerieEntity> {
-    return this.prisma.serie.findFirstOrThrow({ where: { id } });
+  async findOne(id: string): Promise<SerieEntity> {
+    return await this.prisma.serie.findFirstOrThrow({ where: { id } });
   }
 
-  update(id: string, data: Partial<SerieEntity>): Promise<SerieEntity> {
-    return this.prisma.serie.update({ where: { id }, data });
+  async update(id: string, data: Partial<SerieEntity>): Promise<SerieEntity> {
+    return await this.prisma.serie.update({ where: { id }, data });
   }
 
-  delete(id: string): Promise<SerieEntity> {
-    return this.prisma.serie.delete({ where: { id } });
+  async delete(id: string): Promise<SerieEntity> {
+    return await this.prisma.serie.delete({ where: { id } });
   }
 }

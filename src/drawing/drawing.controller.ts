@@ -8,6 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 import { DrawingService } from './drawing.service';
 import { CreateDrawingDto } from './dto/create-drawing.dto';
 import { UpdateDrawingDto } from './dto/update-drawing.dto';
@@ -22,52 +23,62 @@ export class DrawingController {
     summary: 'Adicionar um novo desenho',
   })
   @Post()
-  create(@Body() dto: CreateDrawingDto): Promise<DrawingEntity> {
+  async create(@Body() dto: CreateDrawingDto): Promise<DrawingEntity> {
     try {
-      return this.service.create(dto);
-    } catch (err) {}
+      return await this.service.create(dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Visualizar todos os desenhos',
   })
   @Get()
-  findAll(): Promise<DrawingEntity[]> {
+  async findAll(): Promise<DrawingEntity[]> {
     try {
-      return this.service.findAll();
-    } catch (err) {}
+      return await this.service.findAll();
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Buscar um desenho pelo ID',
   })
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<DrawingEntity> {
+  async findOne(@Param('id') id: string): Promise<DrawingEntity> {
     try {
-      return this.service.findOne(id);
-    } catch (err) {}
+      return await this.service.findOne(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Editar um desenho pelo ID',
   })
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() dto: UpdateDrawingDto,
   ): Promise<DrawingEntity> {
     try {
-      return this.service.update(id, dto);
-    } catch (err) {}
+      return await this.service.update(id, dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 
   @ApiOperation({
     summary: 'Remover um desenho pelo ID',
   })
   @Delete(':id')
-  delete(@Param('id') id: string): Promise<DrawingEntity> {
+  async delete(@Param('id') id: string): Promise<DrawingEntity> {
     try {
-      return this.service.delete(id);
-    } catch (err) {}
+      return await this.service.delete(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
   }
 }

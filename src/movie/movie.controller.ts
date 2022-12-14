@@ -32,7 +32,7 @@ export class MovieController {
     summary: 'Visualizar todos os filmes',
   })
   @Get()
-  findAll(): Promise<MovieEntity> {
+  findAll(): Promise<MovieEntity[]> {
     try {
       return this.service.findAll();
     } catch (err) {}

@@ -32,7 +32,7 @@ export class MovieService {
     try {
       await this.findOne(id);
       const data: Partial<MovieEntity> = { ...dto };
-      return await this.repository.update(data);
+      return await this.repository.update(id, data);
     } catch (err) {}
   }
 

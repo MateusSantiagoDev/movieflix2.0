@@ -2,6 +2,14 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsPositive, IsString } from 'class-validator';
 
 export class CreatePatternDto {
+
+  @IsString()
+  @ApiProperty({
+    description: 'Nome do usuário',
+    example: 'Mateus Santiago',
+  })
+  name: string;
+
   @IsString()
   @ApiProperty({
     description: 'Email do usuário',

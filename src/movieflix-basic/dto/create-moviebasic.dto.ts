@@ -1,7 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsString } from 'class-validator';
-import { MovieEntity } from 'src/movie/entities/movie-entity';
-import { SerieEntity } from 'src/serie/entities/serie.entity';
 
 export class CreateMovieBasicDto {
   @IsString()

@@ -1,7 +1,16 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 import { CreateMovieBasicDto } from './dto/create-moviebasic.dto';
+import { UpdateMovieBasicDto } from './dto/update-moviebasic.dto';
 import { MovieBasicEntity } from './entities/movieflix-basic.entity';
 import { MovieBasicService } from './movieflix-basic.service';
 
@@ -41,6 +50,33 @@ export class MovieBasicController {
   async findOne(@Param('id') id: string): Promise<MovieBasicEntity> {
     try {
       return await this.service.findOne(id);
+    } catch (err) {
+      exceptionhandling(err);
+    }
+  }
+
+  @ApiOperation({
+    summary: 'Editar conteúdo pelo ID',
+  })
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() dto: UpdateMovieBasicDto,
+  ): Promise<MovieBasicEntity> {
+    try {
+      return await this.service.update(id, dto);
+    } catch (err) {
+      exceptionhandling(err);
+    }
+  }
+
+  @ApiOperation({
+    summary: 'Remover conteúdo pelo ID',
+  })
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<MovieBasicEntity> {
+    try {
+      return await this.service.delete(id);
     } catch (err) {
       exceptionhandling(err);
     }

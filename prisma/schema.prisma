@@ -36,6 +36,7 @@ model User {
 model Basic {
   id String @id @unique
 
+  name    String
   email   String
   contact Int
   cpf     String
@@ -53,6 +54,7 @@ model Basic {
 model Pattern {
   id String @id @unique
 
+  name    String
   email   String
   contact Int
   cpf     String
@@ -70,6 +72,7 @@ model Pattern {
 model Premium {
   id String @id @unique
 
+  name    String
   email   String
   contact Int
   cpf     String
@@ -189,8 +192,8 @@ model Documentary {
   evaluation  Float
   image       String
 
-  createdAt    DateTime       @default(now()) @map("created_at")
-  updatedAt    DateTime       @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   moviepremium MoviePremium[]
 

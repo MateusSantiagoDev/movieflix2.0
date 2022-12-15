@@ -6,6 +6,8 @@ import { MoviePatternEntity } from './entities/movieflix-pattern.entity';
 export class MoviePatternRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  
+
   async findAll(): Promise<MoviePatternEntity[]> {
     return await this.prisma.moviePattern.findMany({
       include: { movie: true, serie: true, drawing: true },

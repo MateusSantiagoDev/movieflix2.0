@@ -94,7 +94,7 @@ model MovieBasic {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   Basic   Basic?  @relation(fields: [basicId], references: [id])
-  basicId String?
+  basicId String? 
 
   movie Movie[]
   serie Serie[]

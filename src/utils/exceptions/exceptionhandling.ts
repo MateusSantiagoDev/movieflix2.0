@@ -3,7 +3,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
   UnauthorizedException,
-  UnprocessableEntityException
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { Exception, IException } from './exception.types';
 
@@ -23,7 +23,9 @@ export function exceptionhandling({ message, exception }: IException) {
 
   if (exception === Exception.UnauthorizedException) {
     throw new UnauthorizedException(
-      message ? message : 'Você não tem permissão para fazer esta ação',
+      message
+        ? message
+        : 'Você não tem permissão para fazer esta ação | conta de usuário já existe no sistema',
     );
   }
 

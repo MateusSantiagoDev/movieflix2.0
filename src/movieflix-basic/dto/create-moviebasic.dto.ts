@@ -4,10 +4,10 @@ import { IsArray, IsString } from 'class-validator';
 export class CreateMovieBasicDto {
   @IsString()
   @ApiProperty({
-    description: 'Identificação do perfil por ID',
+    description: 'Identificação do usuário pelo ID',
     example: 'd8b09a66-3654-44aa-8ce4-7d6e75202aad',
   })
-  basicId: string;
+  userId: string;
 
   @IsArray()
   @ApiProperty({

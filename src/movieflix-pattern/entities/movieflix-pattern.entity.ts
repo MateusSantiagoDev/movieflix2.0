@@ -4,7 +4,7 @@ import { SerieEntity } from 'src/serie/entities/serie.entity';
 
 export class MoviePatternEntity {
   id: string;
-  patternId: string;
+  userId: string;
   movie?: MovieEntity[];
   serie?: SerieEntity[];
   drawing?: DrawingEntity[];

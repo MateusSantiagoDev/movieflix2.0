@@ -3,7 +3,7 @@ import { SerieEntity } from 'src/serie/entities/serie.entity';
 
 export class MovieBasicEntity {
   id: string;
-  basicId: string;
+  userId: string;
   movie?: MovieEntity[];
   serie?: SerieEntity[];
 }

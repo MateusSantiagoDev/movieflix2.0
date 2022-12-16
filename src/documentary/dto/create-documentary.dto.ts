@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsPositive, IsString, IsUrl } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  IsPositive,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 export class CreateDocumentaryDto {
   @IsString()
@@ -32,4 +38,11 @@ export class CreateDocumentaryDto {
       'https://www.cineset.com.br/wp-content/uploads/2019/11/Cr%C3%ADtica-Apollo-11-Document%C3%A1rio-Oscar-2020-2.jpg',
   })
   image: string;
+
+  @IsArray()
+  @ApiProperty({
+    description: 'Plano premio',
+    example: '[]',
+  })
+  moviepremium: string[];
 }

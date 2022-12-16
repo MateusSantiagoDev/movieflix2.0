@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsPositive, IsString, IsUrl } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  IsPositive,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 export class CreateDrawingDto {
   @IsString()
@@ -31,4 +37,18 @@ export class CreateDrawingDto {
       'https://akamai.sscdn.co/uploadfile/letras/playlists/c/8/d/2/c8d2c68c37e14169b08f2fe288bcda53.jpg',
   })
   image: string;
+
+  @IsArray()
+  @ApiProperty({
+    description: 'Plano padrão',
+    example: '[]',
+  })
+  moviepattern: string[];
+
+  @IsArray()
+  @ApiProperty({
+    description: 'Plano premio',
+    example: '[]',
+  })
+  moviepremium: string[];
 }

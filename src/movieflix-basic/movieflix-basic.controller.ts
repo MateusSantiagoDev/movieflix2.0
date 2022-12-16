@@ -23,7 +23,7 @@ export class MovieBasicController {
     summary: 'Adicionar mais conteúdo para o Movieflix Basic',
   })
   @Post()
-  async create(@Body() dto: CreateMovieBasicDto): Promise<MovieBasicEntity> {
+  async create(@Body() dto: CreateMovieBasicDto) {
     try {
       return await this.service.create(dto);
     } catch (err) {
@@ -35,7 +35,7 @@ export class MovieBasicController {
     summary: 'Visualizar todos os filmes e séries',
   })
   @Get()
-  async findAll(): Promise<MovieBasicEntity[]> {
+  async findAll() {
     try {
       return await this.service.findAll();
     } catch (err) {
@@ -47,7 +47,7 @@ export class MovieBasicController {
     summary: 'Buscar individualmente pelo ID',
   })
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<MovieBasicEntity> {
+  async findOne(@Param('id') id: string) {
     try {
       return await this.service.findOne(id);
     } catch (err) {
@@ -59,10 +59,7 @@ export class MovieBasicController {
     summary: 'Editar conteúdo pelo ID',
   })
   @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() dto: UpdateMovieBasicDto,
-  ): Promise<MovieBasicEntity> {
+  async update(@Param('id') id: string, @Body() dto: UpdateMovieBasicDto) {
     try {
       return await this.service.update(id, dto);
     } catch (err) {
@@ -74,7 +71,7 @@ export class MovieBasicController {
     summary: 'Remover conteúdo pelo ID',
   })
   @Delete(':id')
-  async delete(@Param('id') id: string): Promise<MovieBasicEntity> {
+  async delete(@Param('id') id: string) {
     try {
       return await this.service.delete(id);
     } catch (err) {

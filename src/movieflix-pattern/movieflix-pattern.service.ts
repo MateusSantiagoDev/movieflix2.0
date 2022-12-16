@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+/* import { Injectable } from "@nestjs/common";
 import { Exceptions } from "src/utils/exceptions/exception.class";
 import { Exception } from "src/utils/exceptions/exception.types";
 import { MoviePatternEntity } from "./entities/movieflix-pattern.entity";
@@ -23,4 +23,4 @@ export class MoviePatternService {
             throw new Exceptions(Exception.NotFoundException)
         }
       }
-}
+} */

@@ -1,5 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsNumber, IsPositive, IsString, IsUrl } from 'class-validator';
+import {
+  IsNumber,
+  IsPositive,
+  IsString,
+  IsUrl
+} from 'class-validator';
 
 export class CreateSerieDto {
   @IsString()
@@ -27,28 +32,8 @@ export class CreateSerieDto {
   @IsUrl()
   @ApiProperty({
     description: 'Iagem do serie',
-    example: 'https://lumiere-a.akamaihd.net/v1/images/398dbf5d3028f1e455b5095ea520edbb_4096x2732_e69b917e.jpeg?region=682,0,2732,2732',
- })
+    example:
+      'https://lumiere-a.akamaihd.net/v1/images/398dbf5d3028f1e455b5095ea520edbb_4096x2732_e69b917e.jpeg?region=682,0,2732,2732',
+  })
   image: string;
-
-  @IsArray()
-  @ApiProperty({
-    description: 'Plano basico',
-    example: '[]',
-  })
-  moviebasic: string[];
-
-  @IsArray()
-  @ApiProperty({
-    description: 'Plano padrão',
-    example: '[]',
-  })
-  moviepattern: string[];
-
-  @IsArray()
-  @ApiProperty({
-    description: 'Plano premio',
-    example: '[]',
-  })
-  moviepremium: string[];
 }

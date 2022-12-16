@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+/* import { Controller, Get, Param } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { exceptionhandling } from 'src/utils/exceptions/exceptionhandling';
 import { MoviePremiumEntity } from './entities/movieflix-premium.entity';
@@ -34,3 +34,4 @@ export class MoviePremiumController {
     }
   }
 }
+ */

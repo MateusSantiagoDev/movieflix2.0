@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from "@nestjs/common";
+/* import { Controller, Get, Param } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { exceptionhandling } from "src/utils/exceptions/exceptionhandling";
 import { MoviePatternEntity } from "./entities/movieflix-pattern.entity";
@@ -32,4 +32,4 @@ export class MoviePatternController {
             exceptionhandling(err)
         }
       }
-}
+} */

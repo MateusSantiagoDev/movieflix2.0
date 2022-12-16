@@ -11,7 +11,7 @@ import { MovieBasicRepository } from './movieflix-basic.repository';
 export class MovieBasicService {
   constructor(private readonly repository: MovieBasicRepository) {}
 
-  async create(dto: CreateMovieBasicDto): Promise<MovieBasicEntity> {
+  async create(dto: CreateMovieBasicDto) {
     try {
       const id = randomUUID();
       return await this.repository.create(id, dto);
@@ -20,7 +20,7 @@ export class MovieBasicService {
     }
   }
 
-  async findAll(): Promise<MovieBasicEntity[]> {
+  async findAll() {
     try {
       return await this.repository.findAll();
     } catch (err) {
@@ -28,7 +28,7 @@ export class MovieBasicService {
     }
   }
 
-  async findOne(id: string): Promise<MovieBasicEntity> {
+  async findOne(id: string) {
     try {
       return await this.repository.findOne(id);
     } catch (err) {
@@ -36,10 +36,7 @@ export class MovieBasicService {
     }
   }
 
-  async update(
-    id: string,
-    dto: UpdateMovieBasicDto,
-  ): Promise<MovieBasicEntity> {
+  async update(id: string, dto: UpdateMovieBasicDto) {
     try {
       await this.findOne(id);
       return await this.repository.update(id, dto);
@@ -48,7 +45,7 @@ export class MovieBasicService {
     }
   }
 
-  async delete(id: string): Promise<MovieBasicEntity> {
+  async delete(id: string) {
     try {
       await this.findOne(id);
       return await this.repository.delete(id);

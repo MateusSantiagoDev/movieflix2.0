@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+/* import { Injectable } from '@nestjs/common';
 import { Exceptions } from 'src/utils/exceptions/exception.class';
 import { Exception } from 'src/utils/exceptions/exception.types';
 import { MoviePremiumEntity } from './entities/movieflix-premium.entity';
@@ -24,3 +24,4 @@ export class MoviePremiumService {
     }
   }
 }
+ */

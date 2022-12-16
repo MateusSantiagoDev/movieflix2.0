@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+/* import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { MoviePremiumEntity } from './entities/movieflix-premium.entity';
 
@@ -19,3 +19,4 @@ export class MoviePremiumRepository {
     });
   }
 }
+ */

@@ -20,8 +20,8 @@ import { UserModule } from './user/user.module';
     DrawingModule,
     DocumentaryModule,
     MovieBasicModule,
-    MoviePatternModule,
-    MoviePremiumModule,
+ /*    MoviePatternModule,
+    MoviePremiumModule, */
   ],
   controllers: [AppController],
   providers: [AppService],

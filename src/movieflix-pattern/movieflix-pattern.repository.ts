@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+/* import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { MoviePatternEntity } from './entities/movieflix-pattern.entity';
 
@@ -21,3 +21,4 @@ export class MoviePatternRepository {
     });
   }
 }
+ */

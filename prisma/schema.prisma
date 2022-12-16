@@ -21,70 +21,11 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  basic   Basic?  @relation(fields: [basicId], references: [id])
-  basicId String?
-
-  pattern   Pattern? @relation(fields: [patternId], references: [id])
-  patternId String?
-
-  premium   Premium? @relation(fields: [premiumId], references: [id])
-  premiumId String?
+  MovieBasic   MovieBasic[]
+  MoviePattern MoviePattern[]
+  MoviePremium MoviePremium[]
 
   @@map("user")
-}
-
-model Basic {
-  id String @id @unique
-
-  name    String
-  email   String
-  contact Int
-  cpf     String
-  cidade  String
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  User       User[]
-  moviebasic MovieBasic[]
-
-  @@map("basic")
-}
-
-model Pattern {
-  id String @id @unique
-
-  name    String
-  email   String
-  contact Int
-  cpf     String
-  cidade  String
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  User         User[]
-  moviepattern MoviePattern[]
-
-  @@map("pattern")
-}
-
-model Premium {
-  id String @id @unique
-
-  name    String
-  email   String
-  contact Int
-  cpf     String
-  cidade  String
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  User         User[]
-  moviepremium MoviePremium[]
-
-  @@map("premium")
 }
 
 model MovieBasic {
@@ -93,8 +34,8 @@ model MovieBasic {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  Basic   Basic?  @relation(fields: [basicId], references: [id])
-  basicId String? 
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 
   movie Movie[]
   serie Serie[]
@@ -108,8 +49,8 @@ model MoviePattern {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  Pattern   Pattern? @relation(fields: [patternId], references: [id])
-  patternId String?
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 
   movie   Movie[]
   serie   Serie[]
@@ -124,8 +65,8 @@ model MoviePremium {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  Premium   Premium? @relation(fields: [premiumId], references: [id])
-  premiumId String?
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 
   movie       Movie[]
   serie       Serie[]

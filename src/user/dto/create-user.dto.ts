@@ -61,6 +61,13 @@ export class CreateUserDto {
 
     @IsString()
     @ApiProperty({
+        description: 'Plano basico da movieflix',
+        example: 'movieflix-basic'
+    })
+    basicId?: string;
+
+    @IsString()
+    @ApiProperty({
         description: 'Confirmação da senha',
         example: 'secret'
     })

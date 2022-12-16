@@ -8,4 +8,5 @@ export class UserEntity {
   cidade: string;
   role: string;
   password: string;
+  basicId?: string;
 }
